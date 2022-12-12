@@ -19,8 +19,8 @@ const View = ({ title, children }) => {
     <div>
       <Sidebar isOpen={isOpen} onClose={onCloseSidebar} />
       <Header onOpenSidebar={onOpenSidebar} />
-      <main className="p-8 lg:px-0 min-h-[800px] lg:container lg:mx-auto">
-        {title && (<h2 className="text-xl uppercase font-semibold mb-8">{title}</h2>)}{children}
+      <main className="p-1 lg:px-0 min-h-[800px] sm:container sm:p-10 m-0 lg:mx-auto">
+        {title && (<h2 className="text-xl uppercase xs:text-sm font-semibold pl-4 my-6">{title}</h2>)}{children}
       </main>
     </div>
   );

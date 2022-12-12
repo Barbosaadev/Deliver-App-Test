@@ -64,12 +64,12 @@ export const DeliveriesListItem = ({
           <span className="uppercase text-xs px-2 py-1 border text-gray-600 border-gray-200 bg-gray-50 rounded-md">
             {date}
           </span>
-          <span className="uppercase text-xs px-2 py-1 ml-4 border text-gray-600 border-gray-200 bg-gray-50 rounded-md">
+          <span className="uppercase text-xs px-2 py-1 ml-2 border text-gray-600 border-gray-200 bg-gray-50 rounded-md">
             Has been delivered?
           </span>
           <input
             type="checkbox"
-            className="ml-4 w-4 h-4 accent-lime-600"
+            className="ml-2 w-4 h-4 accent-lime-600"
             checked={finishedSelect}
             onChange={onToggleSelectFinishedHandler}
           />
@@ -84,7 +84,7 @@ export const DeliveriesListItem = ({
           )}
         </div>
       </div>
-      <p className="uppercase text-xs px-2 py-1 border w-96 mb-4 text-gray-600 border-gray-200 bg-gray-50 rounded-md">
+      <p className="uppercase text-xs px-2 py-1 border xs:w-72 sm:w-60 lg:w-72 xl:w-72 mb-4 text-gray-600 border-gray-200 bg-gray-50 rounded-md">
           {description}
           </p>
     </li>
