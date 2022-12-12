@@ -8,7 +8,7 @@ const Nav = () => {
       <li>
         <Link
           to="/"
-          className="px-8 py-3 text-indigo-100 rounded-md  flex bg-indigo-800/50"
+          className="px-8 py-3 text-indigo-100 rounded-md flex bg-black"
         >
           Home
         </Link>
@@ -16,7 +16,7 @@ const Nav = () => {
       <li>
         <Link
           to="/add"
-          className="px-8 py-3 text-indigo-100 rounded-md  flex bg-indigo-800/50"
+          className="px-8 py-3 text-indigo-100 rounded-md  flex bg-black"
         >
           Add Deliveries
         </Link>

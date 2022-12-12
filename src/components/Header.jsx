@@ -6,9 +6,9 @@ import Bars3Icon from "@heroicons/react/24/outline/Bars3Icon"
 
 const Header = ({ onOpenSidebar }) => {
   return (
-    <header className="bg-indigo-900">
+    <header className=" bg-yellow-400">
       <div className="px-8 h-24 flex items-center lg:container lg:px-0 lg:mx-auto">
-        <h1 className="text-white font-semibold">
+        <h1 className="text-black text-lg font-semibold">
           <Link to="/">Delivery Manager</Link>
         </h1>
         <button

@@ -69,7 +69,7 @@ export const DeliveriesListItem = ({
           </span>
           <input
             type="checkbox"
-            className="ml-4 w-4 h-4 accent-gray-500"
+            className="ml-4 w-4 h-4 accent-lime-600"
             checked={finishedSelect}
             onChange={onToggleSelectFinishedHandler}
           />
