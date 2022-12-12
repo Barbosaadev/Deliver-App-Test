@@ -11,7 +11,7 @@ Projeto desenvolvido em ReactJS utilizando TailwindCSS
  - Abstrações utilizando bem os componentes e hooks no ReactJS
  - Tailwind para toda parte de estilização dos componentes
 
-[Teste do projeto no Vercel](placeholder)
+[Teste do projeto no Vercel](https://deliver-app.vercel.app/)
 
 ### Desenvolvimento e Execução:
 
