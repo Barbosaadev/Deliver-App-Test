@@ -20,7 +20,7 @@ export const getDeliveriesFromLocalStorage = (key = "deliveries") => {
 export const useDeliveries = (key = "deliveries") => {
   const [deliveries, setDeliveries] = useState(getDeliveriesFromLocalStorage(key));
 
-  const addDelivery = ({description, title, date, toggle}) => {
+  const addDelivery = ({description, title, date}) => {
     setDeliveries((prev) => {
       const next = new Map(prev);
       const id = uuid();
@@ -28,14 +28,13 @@ export const useDeliveries = (key = "deliveries") => {
         id,
         title,
         description,
-        date,
-        toggle
+        date
       });
       return next;
     });
   };
 
-  const updateDelivery = (id, {description, title, date, toggle}) => {
+  const updateDelivery = (id, {description, title, date}) => {
     setDeliveries((prev) => {
       if (prev.has(id)) {
         const next = new Map(prev);
@@ -44,7 +43,6 @@ export const useDeliveries = (key = "deliveries") => {
           title,
           description,
           date,
-          toggle
         });
         return next;
       }
