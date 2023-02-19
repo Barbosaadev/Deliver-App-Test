@@ -1,6 +1,6 @@
-import React from 'react';
-import clsx from 'clsx';
-import { DeliveriesListItemActionsMenu } from './DeliveriesListItemActionsMenu';
+import React from "react"
+import clsx from "clsx"
+import { DeliveriesListItemActionsMenu } from "./DeliveriesListItemActionsMenu"
 
 export const DeliveriesListItem = ({
   id,
@@ -16,54 +16,44 @@ export const DeliveriesListItem = ({
   onUnselectFinishedDelivery,
   onEditDelivery,
   onRemoveDelivery,
-  onSelectFinishedDelivery
+  onSelectFinishedDelivery,
 }) => {
   const delivery = {
     id,
     title,
     date,
     description,
-  };
+  }
 
   const onToggleSelectHandler = (e) => {
     if (e.target.checked && onSelectDelivery) {
-      onSelectDelivery(delivery);
-      return;
+      onSelectDelivery(delivery)
+      return
     }
     if (!e.target.checked && onUnselectDelivery) {
-      onUnselectDelivery(delivery);
+      onUnselectDelivery(delivery)
     }
-  };
+  }
 
   const onToggleSelectFinishedHandler = (e) => {
     if (e.target.checked && onSelectFinishedDelivery) {
-      onSelectFinishedDelivery(delivery);
-      return;
+      onSelectFinishedDelivery(delivery)
+      return
     }
     if (!e.target.checked && onUnselectFinishedDelivery) {
-      onUnselectFinishedDelivery(delivery);
+      onUnselectFinishedDelivery(delivery)
     }
-  };
-
+  }
 
   return (
-    <li className={(selected && 'bg-gray-50') || ''}>
+    <li className={(selected && "bg-gray-50") || ""}>
       <div className="flex items-center px-4 py-6">
         {showSelector && (
-          <input
-            type="checkbox"
-            className="mr-4 w-4 h-4 accent-gray-500"
-            checked={selected}
-            onChange={onToggleSelectHandler}
-          />
+          <input type="checkbox" className="mr-4 w-4 h-4 accent-gray-500" checked={selected} onChange={onToggleSelectHandler} />
         )}
         <div className=" flex items-center">
-          <h2 className={clsx('text-xl mr-4', selected && 'font-semibold')}>
-            {title}
-          </h2>
-          <span className="uppercase text-xs px-2 py-1 border text-gray-600 border-gray-200 bg-gray-50 rounded-md">
-            {date}
-          </span>
+          <h2 className={clsx("text-xl mr-4", selected && "font-semibold")}>{title}</h2>
+          <span className="uppercase text-xs px-2 py-1 border text-gray-600 border-gray-200 bg-gray-50 rounded-md">{date}</span>
           <span className="uppercase text-xs px-2 py-1 ml-2 border text-gray-600 border-gray-200 bg-gray-50 rounded-md">
             Has been delivered?
           </span>
@@ -76,19 +66,15 @@ export const DeliveriesListItem = ({
         </div>
         <div className="flex items-center ml-auto">
           {showActionsMenu && (
-            <DeliveriesListItemActionsMenu
-              delivery={delivery}
-              onEditDelivery={onEditDelivery}
-              onRemoveDelivery={onRemoveDelivery}
-            />
+            <DeliveriesListItemActionsMenu delivery={delivery} onEditDelivery={onEditDelivery} onRemoveDelivery={onRemoveDelivery} />
           )}
         </div>
       </div>
       <p className="uppercase text-xs px-2 py-1 border xs:w-72 sm:w-60 lg:w-72 xl:w-72 mb-4 text-gray-600 border-gray-200 bg-gray-50 rounded-md">
-          {description}
-          </p>
+        {description}
+      </p>
     </li>
-  );
-};
+  )
+}
 
 export default DeliveriesListItem

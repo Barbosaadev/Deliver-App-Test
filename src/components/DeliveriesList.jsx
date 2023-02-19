@@ -1,5 +1,5 @@
-import { DeliveriesListItem } from './DeliveriesListItem';
-import { DeliveriesListActionsMenu } from './DeliveriesListActionsMenu';
+import { DeliveriesListItem } from "./DeliveriesListItem"
+import { DeliveriesListActionsMenu } from "./DeliveriesListActionsMenu"
 
 export const DeliveriesList = ({
   deliveries,
@@ -19,7 +19,7 @@ export const DeliveriesList = ({
   onSelectAllDeliveries,
   onUnselectDelivery,
   onUnselectAllDeliveries,
-  onUnselectFinishedDelivery
+  onUnselectFinishedDelivery,
 }) => {
   return (
     <section className="space-y-4">
@@ -53,14 +53,14 @@ export const DeliveriesList = ({
                   onUnselectDelivery={onUnselectDelivery}
                   onUnselectFinishedDelivery={onUnselectFinishedDelivery}
                 />
-              );
+              )
             } else {
-              return null;
+              return null
             }
           })}
       </ul>
     </section>
-  );
-};
+  )
+}
 
 export default DeliveriesList

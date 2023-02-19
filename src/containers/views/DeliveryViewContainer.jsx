@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import View from '../../components/View';
-import { DeliveriesList } from '../../components/DeliveriesList';
-import { DeliveryEditModal } from '../../components/DeliveryEditModal';
-import useDeliveryEditForm from '../../components/DeliveryEditForm/useDeliveryEditForm';
+import { useState } from "react"
+import View from "../../components/View"
+import { DeliveriesList } from "../../components/DeliveriesList"
+import { DeliveryEditModal } from "../../components/DeliveryEditModal"
+import useDeliveryEditForm from "../../components/DeliveryEditForm/useDeliveryEditForm"
 
-import useDeliveries from '../../hooks/useDeliveries';
-import useSelectedDeliveries from '../../hooks/useSelectedDeliveries';
-import useFinishedDeliveries from "../../hooks/useFinishedDeliveries";
+import useDeliveries from "../../hooks/useDeliveries"
+import useSelectedDeliveries from "../../hooks/useSelectedDeliveries"
+import useFinishedDeliveries from "../../hooks/useFinishedDeliveries"
 
 export const DeliveryViewContainer = () => {
-  const { deliveries, addDelivery, updateDelivery, removeDelivery, removeDeliveries } = useDeliveries('deliveries');
+  const { deliveries, addDelivery, updateDelivery, removeDelivery, removeDeliveries } = useDeliveries("deliveries")
 
   const {
     areAllDeliveriesSelected,
@@ -19,88 +19,80 @@ export const DeliveryViewContainer = () => {
     selectedDeliveries,
     unselectDelivery,
     selectAllDeliveries,
-    unselectAllDeliveries
-  } = useSelectedDeliveries(deliveries, 'deliveries');
+    unselectAllDeliveries,
+  } = useSelectedDeliveries(deliveries, "deliveries")
 
-  const {
-    finishedDeliveries,
-    areThereAnyFinishedDeliveries,
-    selectFinishedDelivery,
-    unselectFinishedDelivery
-  } = useFinishedDeliveries(deliveries, 'deliveries');
+  const { finishedDeliveries, areThereAnyFinishedDeliveries, selectFinishedDelivery, unselectFinishedDelivery } =
+    useFinishedDeliveries(deliveries, "deliveries")
 
+  const [modalOpen, setModalOpen] = useState(false)
 
-  const [modalOpen, setModalOpen] = useState(false);
-
-  const editForm = useDeliveryEditForm({onSubmit: (values, helpers) => {
+  const editForm = useDeliveryEditForm({
+    onSubmit: (values, helpers) => {
       if (!values) {
-        return;
+        return
       }
 
-      setModalOpen(true);
+      setModalOpen(true)
 
       if (values.id) {
-        updateDelivery(
-          values.id, {
+        updateDelivery(values.id, {
           title: values.title,
           date: values.date,
           description: values.description,
-
-        });
+        })
       } else {
         addDelivery({
           title: values.title,
           date: values.date,
           description: values.description,
-        });
+        })
       }
 
-      setModalOpen(false);
+      setModalOpen(false)
 
-      helpers.resetForm();
-    }
-  });
+      helpers.resetForm()
+    },
+  })
 
   const onAddDelivery = () => {
-    setModalOpen(true);
-  };
+    setModalOpen(true)
+  }
 
   const onEditDelivery = (delivery) => {
-    setModalOpen(true);
-    editForm.setValues(delivery);
-  };
+    setModalOpen(true)
+    editForm.setValues(delivery)
+  }
 
   const onRemoveDelivery = (delivery) => {
-    removeDelivery(delivery.id);
-  };
+    removeDelivery(delivery.id)
+  }
 
   const onRemoveSelectedDeliveries = () => {
-    const ids = Array.from(selectedDeliveries.values()).map(
-      (delivery) => (delivery && delivery.id) || ''
-    );
-    removeDeliveries(ids);
-  };
+    const ids = Array.from(selectedDeliveries.values()).map((delivery) => (delivery && delivery.id) || "")
+    removeDeliveries(ids)
+  }
 
   const onSelectDelivery = (delivery) => {
-    selectDelivery(delivery.id);
-  };
+    selectDelivery(delivery.id)
+  }
 
   const onUnselectDelivery = (delivery) => {
-    unselectDelivery(delivery.id);
-  };
+    unselectDelivery(delivery.id)
+  }
 
   const onSelectAllDeliveries = () => {
-    selectAllDeliveries();
-  };
+    selectAllDeliveries()
+  }
 
   const onUnselectAllDeliveries = () => {
-    unselectAllDeliveries();
-  };
+    unselectAllDeliveries()
+  }
 
   const onCloseDeliveryEditModal = () => {
-    setModalOpen(false);
-    editForm.resetForm();
-  };
+    setModalOpen(false)
+    editForm.resetForm()
+  }
 
   const onSelectFinishedDelivery = (delivery) => {
     selectFinishedDelivery(delivery.id)
@@ -134,13 +126,9 @@ export const DeliveryViewContainer = () => {
         onUnselectFinishedDelivery={onUnselectFinishedDelivery}
         onUnselectAllDeliveries={onUnselectAllDeliveries}
       />
-      <DeliveryEditModal
-        open={modalOpen}
-        onClose={onCloseDeliveryEditModal}
-        formProps={editForm}
-      />
+      <DeliveryEditModal open={modalOpen} onClose={onCloseDeliveryEditModal} formProps={editForm} />
     </View>
-  );
-};
+  )
+}
 
 export default DeliveryViewContainer

@@ -1,65 +1,60 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react"
 
 const getFinishedDeliveriesFromLocalStorage = (key = "deliveries") => {
-try {
-    return new Map(
-    JSON.parse(window.localStorage.getItem(`finished-${key}`) || '[]')
-    );
-} catch (e) {
-    return new Map();
+  try {
+    return new Map(JSON.parse(window.localStorage.getItem(`finished-${key}`) || "[]"))
+  } catch (e) {
+    return new Map()
+  }
 }
-};
 
 const setFinishedDeliveriesToLocalStorage = (key = "deliveries", value = new Map([])) => {
-    window.localStorage.setItem(`finished-${key}`,JSON.stringify(Array.from(value.entries()))
-);
-};
+  window.localStorage.setItem(`finished-${key}`, JSON.stringify(Array.from(value.entries())))
+}
 
 export const useFinishedDeliveries = (value = new Map([]), key = "deliveries") => {
-const [finishedDeliveries, setFinishedDeliveries] = useState(
-    getFinishedDeliveriesFromLocalStorage(key)
-);
+  const [finishedDeliveries, setFinishedDeliveries] = useState(getFinishedDeliveriesFromLocalStorage(key))
 
-const selectFinishedDelivery = (id) => {
+  const selectFinishedDelivery = (id) => {
     setFinishedDeliveries((prev) => {
-    const next = new Map(prev);
-    next.set(id, value.get(id));
-    return next;
-    });
-};
+      const next = new Map(prev)
+      next.set(id, value.get(id))
+      return next
+    })
+  }
 
-const unselectFinishedDelivery = (id) => {
+  const unselectFinishedDelivery = (id) => {
     setFinishedDeliveries((prev) => {
-    const next = new Map(prev);
-    next.delete(id);
-    return next;
-    });
-};
+      const next = new Map(prev)
+      next.delete(id)
+      return next
+    })
+  }
 
-const areThereAnyFinishedDeliveries = value.size > 0;
+  const areThereAnyFinishedDeliveries = value.size > 0
 
-useEffect(() => {
+  useEffect(() => {
     setFinishedDeliveries((prev) => {
-    const next = new Map(prev);
-    next.forEach((p) => {
+      const next = new Map(prev)
+      next.forEach((p) => {
         if (p && !value.has(p.id)) {
-        next.delete(p.id);
+          next.delete(p.id)
         }
-    });
-    return next;
-    });
-}, [value]);
+      })
+      return next
+    })
+  }, [value])
 
-useEffect(() => {
-    setFinishedDeliveriesToLocalStorage("deliveries", finishedDeliveries);
-}, [finishedDeliveries]);
+  useEffect(() => {
+    setFinishedDeliveriesToLocalStorage("deliveries", finishedDeliveries)
+  }, [finishedDeliveries])
 
-return {
+  return {
     finishedDeliveries,
     areThereAnyFinishedDeliveries,
     selectFinishedDelivery,
-    unselectFinishedDelivery
-};
-};
+    unselectFinishedDelivery,
+  }
+}
 
-export default useFinishedDeliveries;
+export default useFinishedDeliveries

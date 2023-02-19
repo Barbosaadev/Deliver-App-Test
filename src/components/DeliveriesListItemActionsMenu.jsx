@@ -1,25 +1,21 @@
-import { Menu } from '@headlessui/react';
+import { Menu } from "@headlessui/react"
 
-import DotsVerticalIcon from '@heroicons/react/24/outline/EllipsisVerticalIcon';
-import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
-import PencilAltIcon from '@heroicons/react/24/outline/PencilIcon';
+import DotsVerticalIcon from "@heroicons/react/24/outline/EllipsisVerticalIcon"
+import TrashIcon from "@heroicons/react/24/outline/TrashIcon"
+import PencilAltIcon from "@heroicons/react/24/outline/PencilIcon"
 
-export const DeliveriesListItemActionsMenu = ({
-  delivery,
-  onEditDelivery,
-  onRemoveDelivery
-}) => {
+export const DeliveriesListItemActionsMenu = ({ delivery, onEditDelivery, onRemoveDelivery }) => {
   const onEditDeliveryHandler = () => {
     if (delivery && onEditDelivery) {
-      onEditDelivery(delivery);
+      onEditDelivery(delivery)
     }
-  };
+  }
 
   const onRemoveDeliveryHandler = () => {
     if (delivery && onRemoveDelivery) {
-      onRemoveDelivery(delivery);
+      onRemoveDelivery(delivery)
     }
-  };
+  }
   return (
     <Menu as="menu" className="relative space-x-1">
       <Menu.Button className="px-3 py-2">
@@ -48,7 +44,7 @@ export const DeliveriesListItemActionsMenu = ({
         </div>
       </Menu.Items>
     </Menu>
-  );
-};
+  )
+}
 
 export default DeliveriesListItemActionsMenu

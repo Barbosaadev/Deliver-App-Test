@@ -1,9 +1,9 @@
-import { Menu } from '@headlessui/react';
-import clsx from 'clsx';
-import DotsVerticalIcon from '@heroicons/react/24/outline/EllipsisVerticalIcon';
-import TrashIcon from '@heroicons/react/24/outline/TrashIcon';
-import FolderAddIcon from '@heroicons/react/24/outline/FolderIcon';
-import PlusIcon from '@heroicons/react/24/outline/PlusIcon';
+import { Menu } from "@headlessui/react"
+import clsx from "clsx"
+import DotsVerticalIcon from "@heroicons/react/24/outline/EllipsisVerticalIcon"
+import TrashIcon from "@heroicons/react/24/outline/TrashIcon"
+import FolderAddIcon from "@heroicons/react/24/outline/FolderIcon"
+import PlusIcon from "@heroicons/react/24/outline/PlusIcon"
 
 export const DeliveriesListActionsMenu = ({
   onAddDelivery,
@@ -12,21 +12,18 @@ export const DeliveriesListActionsMenu = ({
   onRemoveSelectedDeliveries,
   areAllDeliveriesSelected,
   areThereAnySelectedDeliveries,
-  areThereAnyDeliveries
+  areThereAnyDeliveries,
 }) => {
   return (
     <menu className="space-x-1 flex justify-end sm:justify-start">
-      <button
-        className="px-3 py-2 text-sm rounded-md border border-gray-200 flex hover:bg-gray-100"
-        onClick={onAddDelivery}
-      >
+      <button className="px-3 py-2 text-sm rounded-md border border-gray-200 flex hover:bg-gray-100" onClick={onAddDelivery}>
         <PlusIcon className="h-5 w-5 mr-1" />
         Add
       </button>
       <button
         className={clsx(
-          'px-3 py-2 text-sm rounded-md border border-gray-200 hidden enabled:hover:bg-gray-100 disabled:opacity-25 sm:flex',
-          areAllDeliveriesSelected && 'enabled:bg-gray-200  enabled:hover:bg-gray-300'
+          "px-3 py-2 text-sm rounded-md border border-gray-200 hidden enabled:hover:bg-gray-100 disabled:opacity-25 sm:flex",
+          areAllDeliveriesSelected && "enabled:bg-gray-200  enabled:hover:bg-gray-300"
         )}
         onClick={(areAllDeliveriesSelected && onUnselectAllDeliveries) || onSelectAllDeliveries}
         disabled={!areThereAnyDeliveries}
@@ -51,14 +48,11 @@ export const DeliveriesListActionsMenu = ({
             <Menu.Item>
               <button
                 className={clsx(
-                  'px-3 py-2 text-sm rounded-md border border-gray-200 enabled:hover:bg-gray-100 disabled:opacity-25 flex w-full',
-                  areAllDeliveriesSelected &&
-                    'enabled:bg-gray-200 enabled:hover:bg-gray-300'
+                  "px-3 py-2 text-sm rounded-md border border-gray-200 enabled:hover:bg-gray-100 disabled:opacity-25 flex w-full",
+                  areAllDeliveriesSelected && "enabled:bg-gray-200 enabled:hover:bg-gray-300"
                 )}
                 disabled={!areThereAnyDeliveries}
-                onClick={
-                  areAllDeliveriesSelected ? onUnselectAllDeliveries : onSelectAllDeliveries
-                }
+                onClick={areAllDeliveriesSelected ? onUnselectAllDeliveries : onSelectAllDeliveries}
               >
                 <FolderAddIcon className="h-5 w-5 mr-1" />
                 Select all
@@ -78,7 +72,7 @@ export const DeliveriesListActionsMenu = ({
         </Menu.Items>
       </Menu>
     </menu>
-  );
-};
+  )
+}
 
 export default DeliveriesListActionsMenu

@@ -1,71 +1,66 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react"
 
 const getSelectedDeliveriesFromLocalStorage = (key = "deliveries") => {
-try {
-    return new Map(
-    JSON.parse(window.localStorage.getItem(`selected-${key}`) || '[]')
-    );
-} catch (e) {
-    return new Map();
+  try {
+    return new Map(JSON.parse(window.localStorage.getItem(`selected-${key}`) || "[]"))
+  } catch (e) {
+    return new Map()
+  }
 }
-};
 
 const setSelectedDeliveriesToLocalStorage = (key = "deliveries", value = new Map([])) => {
-    window.localStorage.setItem(`selected-${key}`,JSON.stringify(Array.from(value.entries()))
-);
-};
+  window.localStorage.setItem(`selected-${key}`, JSON.stringify(Array.from(value.entries())))
+}
 
 export const useSelectedDeliveries = (value = new Map([]), key = "deliveries") => {
-const [selectedDeliveries, setSelectedDeliveries] = useState(
-    getSelectedDeliveriesFromLocalStorage(key)
-);
+  const [selectedDeliveries, setSelectedDeliveries] = useState(getSelectedDeliveriesFromLocalStorage(key))
 
-const selectDelivery = (id) => {
+  const selectDelivery = (id) => {
     setSelectedDeliveries((prev) => {
-    const next = new Map(prev);
-    next.set(id, value.get(id));
-    return next;
-    });
-};
+      const next = new Map(prev)
+      next.set(id, value.get(id))
+      return next
+    })
+  }
 
-const unselectDelivery = (id) => {
+  const unselectDelivery = (id) => {
     setSelectedDeliveries((prev) => {
-    const next = new Map(prev);
-    next.delete(id);
-    return next;
-    });
-};
+      const next = new Map(prev)
+      next.delete(id)
+      return next
+    })
+  }
 
-const selectAllDeliveries = () => {
-    setSelectedDeliveries(new Map(value));
-};
+  const selectAllDeliveries = () => {
+    setSelectedDeliveries(new Map(value))
+  }
 
-const unselectAllDeliveries = () => {
-    setSelectedDeliveries(new Map());
-};
+  const unselectAllDeliveries = () => {
+    setSelectedDeliveries(new Map())
+  }
 
-const areAllDeliveriesSelected = selectedDeliveries.size > 0 && selectedDeliveries.size === value.size;
+  const areAllDeliveriesSelected = selectedDeliveries.size > 0 && selectedDeliveries.size === value.size
 
-const areThereAnySelectedDeliveries = selectedDeliveries.size > 0;
-const areThereAnyDeliveries = value.size > 0;
+  const areThereAnySelectedDeliveries = selectedDeliveries.size > 0
+  const areThereAnyDeliveries = value.size > 0
 
-useEffect(() => {
+  useEffect(() => {
     setSelectedDeliveries((prev) => {
-    const next = new Map(prev);
-    next.forEach((p) => {
+      const next = new Map(prev)
+      next.forEach((p) => {
         if (p && !value.has(p.id)) {
-        next.delete(p.id);
+          next.delete(p.id)
         }
-    });
-    return next;
-    });
-}, [value]);
+      })
+      return next
+    })
+  }, [value])
 
-useEffect(() => {
-    setSelectedDeliveriesToLocalStorage("deliveries", selectedDeliveries);
-}, [selectedDeliveries]);
+  useEffect(() => {
+    setSelectedDeliveriesToLocalStorage("deliveries", selectedDeliveries)
+  }, [selectedDeliveries])
 
-return {
+  return {
     selectedDeliveries,
     areAllDeliveriesSelected,
     areThereAnySelectedDeliveries,
@@ -73,8 +68,8 @@ return {
     selectDelivery,
     unselectDelivery,
     selectAllDeliveries,
-    unselectAllDeliveries
-};
-};
+    unselectAllDeliveries,
+  }
+}
 
-export default useSelectedDeliveries;
+export default useSelectedDeliveries

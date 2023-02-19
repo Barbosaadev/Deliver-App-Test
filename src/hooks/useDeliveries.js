@@ -1,89 +1,86 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react"
 
-const uuid = () => Math.random().toString(36).substring(2, 9);
+const uuid = () => Math.random().toString(36).substring(2, 9)
 
-export const setDeliveriesToLocalStorage = (key = 'deliveries', value = new Map([])) => {
-  window.localStorage.setItem(
-    key,
-    JSON.stringify(Array.from(value.entries()))
-  );
-};
+export const setDeliveriesToLocalStorage = (key = "deliveries", value = new Map([])) => {
+  window.localStorage.setItem(key, JSON.stringify(Array.from(value.entries())))
+}
 
 export const getDeliveriesFromLocalStorage = (key = "deliveries") => {
   try {
-    return new Map(JSON.parse(window.localStorage.getItem(key) || '[]'));
+    return new Map(JSON.parse(window.localStorage.getItem(key) || "[]"))
   } catch (e) {
-    return new Map();
+    return new Map()
   }
-};
+}
 
 export const useDeliveries = (key = "deliveries") => {
-  const [deliveries, setDeliveries] = useState(getDeliveriesFromLocalStorage(key));
+  const [deliveries, setDeliveries] = useState(getDeliveriesFromLocalStorage(key))
 
-  const addDelivery = ({description, title, date}) => {
+  const addDelivery = ({ description, title, date }) => {
     setDeliveries((prev) => {
-      const next = new Map(prev);
-      const id = uuid();
+      const next = new Map(prev)
+      const id = uuid()
       next.set(id, {
         id,
         title,
         description,
-        date
-      });
-      return next;
-    });
-  };
+        date,
+      })
+      return next
+    })
+  }
 
-  const updateDelivery = (id, {description, title, date}) => {
+  const updateDelivery = (id, { description, title, date }) => {
     setDeliveries((prev) => {
       if (prev.has(id)) {
-        const next = new Map(prev);
+        const next = new Map(prev)
         next.set(id, {
           id,
           title,
           description,
           date,
-        });
-        return next;
+        })
+        return next
       }
-      return prev;
-    });
-  };
+      return prev
+    })
+  }
 
   const removeDelivery = (id) => {
     setDeliveries((prev) => {
       if (prev.has(id)) {
-        const next = new Map(prev);
-        next.delete(id);
-        return next;
+        const next = new Map(prev)
+        next.delete(id)
+        return next
       }
-      return prev;
-    });
-  };
+      return prev
+    })
+  }
 
   const removeDeliveries = (ids) => {
     setDeliveries((prev) => {
-      const next = new Map(prev);
+      const next = new Map(prev)
       ids.forEach((id) => {
         if (next.has(id)) {
-          next.delete(id);
+          next.delete(id)
         }
-      });
-      return next;
-    });
-  };
+      })
+      return next
+    })
+  }
 
   useEffect(() => {
-    setDeliveriesToLocalStorage(key, deliveries);
-  }, [deliveries]);
+    setDeliveriesToLocalStorage(key, deliveries)
+  }, [deliveries])
 
   return {
     deliveries,
     addDelivery,
     updateDelivery,
     removeDelivery,
-    removeDeliveries
-  };
-};
+    removeDeliveries,
+  }
+}
 
-export default useDeliveries;
+export default useDeliveries
